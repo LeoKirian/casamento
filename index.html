@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casamento Fulano & Ciclana</title>
+    <title>Casamento Jessica & Leonardo</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #A67B5B; /* Um tom terra/dourado */
+            --primary-color: #A67B5B; /* Tom terra/dourado */
             --bg-color: #FAFAFA;
             --text-color: #333;
         }
@@ -22,25 +22,20 @@
             line-height: 1.6;
         }
 
-        h2{
+        h1, h2, h3 {
             font-family: 'Great Vibes', cursive;
             color: var(--primary-color);
             text-align: center;
-            font-size: 4rem;
         }
 
-        h1, h3 {
-            font-family: 'Great Vibes', cursive;
-            color: var(--primary-color);
-            text-align: center;
-            font-size: 1.5rem;
-        }
-        
+        h2 { font-size: 3.5rem; margin-bottom: 10px; }
+        h3 { font-size: 1.8rem; }
 
         /* Hero Section (Topo) */
         .hero {
             height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            /* DICA: Troque a URL abaixo pela foto real do casal depois */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -53,15 +48,45 @@
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: 4rem; /* Ajustado para caber melhor no mobile */
             color: white;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .hero p {
-            font-size: 2rem;
-            letter-spacing: 2px;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* CONTAGEM REGRESSIVA (NOVO) */
+        .countdown-bar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 25px 10px;
+            text-align: center;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-unit span {
+            font-size: 0.8rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            opacity: 0.9;
         }
 
         /* Container padrão */
@@ -84,7 +109,7 @@
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: transform 0.2s;
             border: 1px solid #eee;
         }
@@ -97,41 +122,46 @@
         .price {
             font-weight: bold;
             color: var(--primary-color);
-            font-size: 1.2rem;
-            margin: 10px 0;
+            font-size: 1.4rem;
+            margin: 15px 0;
         }
 
         /* Botões */
         .btn {
             background-color: var(--primary-color);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 30px;
             display: inline-block;
             cursor: pointer;
             border: none;
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.2s;
+            font-weight: 600;
         }
 
         .btn:hover {
             background-color: #8a6245;
+            transform: scale(1.05);
         }
 
         /* RSVP Section */
         .rsvp-box {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 20px;
+            background-color: #f8f5f2;
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+            border: 1px dashed var(--primary-color);
         }
 
         /* Responsividade */
         @media (max-width: 600px) {
             .hero h1 { font-size: 3rem; }
             .hero p { font-size: 1rem; }
+            h2 { font-size: 2.5rem; }
+            .countdown-timer { gap: 10px; font-size: 1rem; }
         }
     </style>
 </head>
@@ -139,77 +169,118 @@
 
     <header class="hero">
         <h1>Jessica & Leonardo</h1>
-        <p>VAMOS NOS CASAR!</p>
+        <p>Vamos nos Casar!</p>
         <p>07 . 11 . 2026</p>
     </header>
 
-    <div class="countdown-container">
-    <div id="countdown">Carregando contagem...</div>
-</div>
+    <div class="countdown-bar">
+        <div id="timer" class="countdown-timer">
+            <div class="time-unit"><strong id="days">00</strong><span>Dias</span></div>
+            <div class="time-unit"><strong id="hours">00</strong><span>Horas</span></div>
+            <div class="time-unit"><strong id="minutes">00</strong><span>Min</span></div>
+            <div class="time-unit"><strong id="seconds">00</strong><span>Seg</span></div>
+        </div>
+    </div>
 
     <section class="container">
         <h2>O Grande Dia</h2>
-        <p>Estamos muito felizes em compartilhar esse momento com vocês. Será uma cerimônia íntima em Curitiba, com as pessoas que mais amamos.</p>
+        <p>Estamos muito felizes em compartilhar esse momento com vocês. Será uma cerimônia íntima em Curitiba, cercada de natureza e das pessoas que mais amamos.</p>
         <br>
-        <p><strong>📍 Local:</strong> Céu das Araucárias</p>
-        <p><strong>⏰ Horário:</strong> 15h30</p>
-        <a href="https://maps.app.goo.gl/2g68xKzywHbezByX7" target="_blank" class="btn">Ver no Mapa</a>
+        <div style="background: #fff; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            <p style="margin: 5px 0;"><strong>📍 Local:</strong> Céu das Araucárias</p>
+            <p style="margin: 5px 0;"><strong>⏰ Horário:</strong> 15h30</p>
+        </div>
+        <br><br>
+        <a href="https://goo.gl/maps/PLACEHOLDER" target="_blank" class="btn">Ver Local no Mapa</a>
     </section>
 
-    <hr style="width: 50%; opacity: 0.3;">
+    <hr style="width: 40%; opacity: 0.2; margin: 0 auto;">
 
     <section class="container">
         <h2>Lista de Presentes</h2>
-        <p>Como já temos nossa casa montada, optamos por uma lista virtual. Fiquem à vontade para contribuir com nossa Lua de Mel!</p>
+        <p>Como já temos nossa casa montada, optamos por uma lista virtual. Sua presença é nosso maior presente, mas se quiser contribuir com nossa Lua de Mel, ficaremos muito gratos!</p>
 
         <div class="gift-grid">
             <div class="gift-card">
-                <h3>Jantar Romântico</h3>
+                <h3>🍷 Jantar Romântico</h3>
                 <p class="price">R$ 150,00</p>
-                <button onclick="copiarPix('150.00')" class="btn">Presentear (Pix)</button>
+                <button onclick="copiarPix('150.00')" class="btn">Presentear</button>
             </div>
             <div class="gift-card">
-                <h3>Passeio de Barco</h3>
+                <h3>⛵ Passeio de Barco</h3>
                 <p class="price">R$ 300,00</p>
-                <button onclick="copiarPix('300.00')" class="btn">Presentear (Pix)</button>
+                <button onclick="copiarPix('300.00')" class="btn">Presentear</button>
             </div>
             <div class="gift-card">
-                <h3>Cota Lua de Mel</h3>
+                <h3>✈️ Cota Lua de Mel</h3>
                 <p class="price">R$ 500,00</p>
-                <button onclick="copiarPix('500.00')" class="btn">Presentear (Pix)</button>
+                <button onclick="copiarPix('500.00')" class="btn">Presentear</button>
             </div>
              <div class="gift-card">
-                <h3>Valor Livre</h3>
+                <h3>💌 Valor Livre</h3>
                 <p class="price">R$ ???</p>
                 <button onclick="copiarPix('0')" class="btn">Qualquer Valor</button>
             </div>
         </div>
     </section>
 
-    <section class="container rsvp-box">
-        <h2>Confirmação de Presença</h2>
-        <p>Sua presença é muito importante para nós. Por favor, confirme até dia 01/10.</p>
-        <a href="LINK_DO_SEU_GOOGLE_FORMS" target="_blank" class="btn">Confirmar Presença</a>
+    <section class="container">
+        <div class="rsvp-box">
+            <h2>Confirmação de Presença</h2>
+            <p>Para organizarmos tudo com carinho, precisamos saber se você poderá ir.</p>
+            <p><strong>Por favor, confirme até dia 01/10/2026.</strong></p>
+            <br>
+            <a href="LINK_DO_SEU_GOOGLE_FORMS" target="_blank" class="btn">Confirmar Presença</a>
+        </div>
     </section>
 
-    <footer style="text-align: center; padding: 20px; font-size: 0.8rem; opacity: 0.7;">
-        <p>Feito com carinho pelos noivos.</p>
+    <footer style="background-color: #333; color: white; text-align: center; padding: 40px 20px; margin-top: 40px;">
+        <p style="font-family: 'Great Vibes', cursive; font-size: 1.5rem; margin: 0;">Jessica & Leonardo</p>
+        <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 10px;">Feito com ♥ pelos noivos.</p>
     </footer>
 
     <script>
+        // --- LÓGICA DO PIX ---
         function copiarPix(valor) {
-            // Coloque aqui sua chave PIX real (CPF, Email ou Aleatória)
+            // EDITE AQUI: Sua chave real
             const chavePix = "sua-chave-pix@email.com"; 
             
-            // Cria um elemento temporário para copiar
             navigator.clipboard.writeText(chavePix).then(() => {
-                alert(`Chave Pix copiada com sucesso!\n\nChave: ${chavePix}\n\nAgora é só abrir o app do banco e colar.`);
+                alert(`Chave Pix copiada!\n\n${chavePix}\n\nAbra seu app do banco e cole a chave.`);
             }).catch(err => {
-                console.error('Erro ao copiar: ', err);
-                alert("Não foi possível copiar automaticamente. A chave é: " + chavePix);
+                console.error('Erro:', err);
+                prompt("Copie a chave manualmente:", chavePix);
             });
         }
+
+        // --- LÓGICA DA CONTAGEM REGRESSIVA ---
+        const countdownElement = document.getElementById('timer');
+        
+        // Data do Casamento: Ano, Mês (0-11), Dia, Hora, Minuto
+        // Note: Mês 10 é Novembro (janeiro é 0)
+        const weddingDate = new Date(2026, 10, 7, 15, 30, 0).getTime();
+
+        const updateTimer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                clearInterval(updateTimer);
+                countdownElement.innerHTML = "<div>CHEGOU O GRANDE DIA! ❤</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+
+        }, 1000);
     </script>
 </body>
 </html>
-
