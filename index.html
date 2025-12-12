@@ -11,6 +11,8 @@
             --primary-color: #A67B5B; /* Tom terra/dourado */
             --bg-color: #FAFAFA;
             --text-color: #333;
+            --pix-color: #3cb890;    /* Verde do Pix */
+            --card-color: #007bff;   /* Azul do Cartão */
         }
 
         body {
@@ -34,7 +36,7 @@
         /* Hero Section (Topo) */
         .hero {
             height: 80vh;
-            /* DICA: Troque a URL abaixo pela foto real do casal depois */
+            /* DICA: Troque a URL abaixo pela foto real do casal */
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
@@ -48,7 +50,7 @@
         }
 
         .hero h1 {
-            font-size: 4rem; /* Ajustado para caber melhor no mobile */
+            font-size: 4rem;
             color: white;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -60,7 +62,7 @@
             text-transform: uppercase;
         }
 
-        /* CONTAGEM REGRESSIVA (NOVO) */
+        /* CONTAGEM REGRESSIVA */
         .countdown-bar {
             background-color: var(--primary-color);
             color: white;
@@ -126,26 +128,39 @@
             margin: 15px 0;
         }
 
-        /* Botões */
+        /* --- NOVOS ESTILOS PARA OS BOTÕES --- */
+        .options-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
         .btn {
-            background-color: var(--primary-color);
+            flex: 1; /* Faz os botões ocuparem o mesmo tamanho */
             color: white;
-            padding: 12px 25px;
+            padding: 10px 5px;
             text-decoration: none;
-            border-radius: 30px;
-            display: inline-block;
+            border-radius: 25px;
             cursor: pointer;
             border: none;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            transition: background 0.3s, transform 0.2s;
+            font-size: 0.85rem;
             font-weight: 600;
+            transition: opacity 0.3s;
         }
 
-        .btn:hover {
-            background-color: #8a6245;
-            transform: scale(1.05);
+        /* Botão Genérico (usado em outros lugares) */
+        .btn-default {
+            background-color: var(--primary-color);
+            padding: 12px 30px; 
         }
+
+        /* Cores Específicas dos Presentes */
+        .pix-btn { background-color: var(--pix-color); }
+        .card-btn { background-color: var(--card-color); }
+
+        .btn:hover { opacity: 0.9; transform: scale(1.02); }
 
         /* RSVP Section */
         .rsvp-box {
@@ -162,6 +177,7 @@
             .hero p { font-size: 1rem; }
             h2 { font-size: 2.5rem; }
             .countdown-timer { gap: 10px; font-size: 1rem; }
+            .options-group { flex-direction: column; } /* No celular, empilha os botões se ficar apertado */
         }
     </style>
 </head>
@@ -191,36 +207,53 @@
             <p style="margin: 5px 0;"><strong>⏰ Horário:</strong> 15h30</p>
         </div>
         <br><br>
-        <a href="https://maps.app.goo.gl/63v5eo5PU6XnoZFL8" target="_blank" class="btn">Ver Local no Mapa</a>
+        <a href="https://goo.gl/maps/PLACEHOLDER" target="_blank" class="btn btn-default">Ver Local no Mapa</a>
     </section>
 
     <hr style="width: 40%; opacity: 0.2; margin: 0 auto;">
 
     <section class="container">
         <h2>Lista de Presentes</h2>
-        <p>Como já temos nossa casa montada, optamos por uma lista virtual. Sua presença é nosso maior presente, mas se quiser contribuir com nossa Lua de Mel, ficaremos muito gratos!</p>
+        <p>Sua presença é nosso maior presente! Se desejar contribuir com nossa Lua de Mel, escolha a forma mais prática para você (Pix ou Cartão).</p>
 
         <div class="gift-grid">
+            
             <div class="gift-card">
                 <h3>🍷 Jantar Romântico</h3>
                 <p class="price">R$ 150,00</p>
-                <button onclick="copiarPix('150.00')" class="btn">Presentear</button>
+                <div class="options-group">
+                    <button onclick="copiarPix('150.00')" class="btn pix-btn">PIX</button>
+                    <button onclick="abrirCartao('https://link_pagamento_150.com.br')" class="btn card-btn">Cartão</button>
+                </div>
             </div>
+
             <div class="gift-card">
                 <h3>⛵ Passeio de Barco</h3>
                 <p class="price">R$ 300,00</p>
-                <button onclick="copiarPix('300.00')" class="btn">Presentear</button>
+                <div class="options-group">
+                    <button onclick="copiarPix('300.00')" class="btn pix-btn">PIX</button>
+                    <button onclick="abrirCartao('https://link_pagamento_300.com.br')" class="btn card-btn">Cartão</button>
+                </div>
             </div>
+
             <div class="gift-card">
                 <h3>✈️ Cota Lua de Mel</h3>
                 <p class="price">R$ 500,00</p>
-                <button onclick="copiarPix('500.00')" class="btn">Presentear</button>
+                <div class="options-group">
+                    <button onclick="copiarPix('500.00')" class="btn pix-btn">PIX</button>
+                    <button onclick="abrirCartao('https://link_pagamento_500.com.br')" class="btn card-btn">Cartão</button>
+                </div>
             </div>
-             <div class="gift-card">
+
+            <div class="gift-card">
                 <h3>💌 Valor Livre</h3>
                 <p class="price">R$ ???</p>
-                <button onclick="copiarPix('0')" class="btn">Qualquer Valor</button>
+                <div class="options-group">
+                    <button onclick="copiarPix('0')" class="btn pix-btn">PIX</button>
+                    <button onclick="abrirCartao('https://link_pagamento_livre.com.br')" class="btn card-btn">Cartão</button>
+                </div>
             </div>
+
         </div>
     </section>
 
@@ -230,7 +263,7 @@
             <p>Para organizarmos tudo com carinho, precisamos saber se você poderá ir.</p>
             <p><strong>Por favor, confirme até dia 01/10/2026.</strong></p>
             <br>
-            <a href="LINK_DO_SEU_GOOGLE_FORMS" target="_blank" class="btn">Confirmar Presença</a>
+            <a href="LINK_DO_SEU_GOOGLE_FORMS" target="_blank" class="btn btn-default">Confirmar Presença</a>
         </div>
     </section>
 
@@ -240,7 +273,7 @@
     </footer>
 
     <script>
-        // --- LÓGICA DO PIX ---
+        // --- 1. LÓGICA DO PIX ---
         function copiarPix(valor) {
             // EDITE AQUI: Sua chave real
             const chavePix = "sua-chave-pix@email.com"; 
@@ -253,11 +286,21 @@
             });
         }
 
-        // --- LÓGICA DA CONTAGEM REGRESSIVA ---
+        // --- 2. LÓGICA DO CARTÃO ---
+        function abrirCartao(link) {
+            // Verifica se o link ainda é o placeholder
+            if (link.includes('link_pagamento')) {
+                alert("Olá! Os noivos ainda estão configurando o link de pagamento deste item. Por favor, tente a opção PIX ou avise-os!");
+            } else {
+                // Abre o link de pagamento em nova aba
+                window.open(link, '_blank');
+            }
+        }
+
+        // --- 3. LÓGICA DA CONTAGEM REGRESSIVA ---
         const countdownElement = document.getElementById('timer');
         
-        // Data do Casamento: Ano, Mês (0-11), Dia, Hora, Minuto
-        // Note: Mês 10 é Novembro (janeiro é 0)
+        // Data do Casamento: Ano, Mês (Janeiro=0, Novembro=10), Dia, Hora, Minuto
         const weddingDate = new Date(2026, 10, 7, 15, 30, 0).getTime();
 
         const updateTimer = setInterval(function() {
